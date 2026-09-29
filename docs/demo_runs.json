@@ -1,0 +1,420 @@
+{
+  "direct": {
+    "question": "What is corrective retrieval augmented generation?",
+    "query": "What is corrective retrieval augmented generation?",
+    "documents": [
+      {
+        "id": "crag-overview",
+        "title": "Corrective retrieval-augmented generation",
+        "source": "Local course notes \u00b7 CRAG",
+        "text": "Corrective retrieval-augmented generation (CRAG) evaluates retrieved evidence before answering a question. A document grader labels each candidate relevant or irrelevant. When evidence quality is poor, the agent rewrites the query and retrieves again or uses web search. Only accepted evidence is supplied to answer generation, reducing the chance of unsupported claims.",
+        "score": 1.0
+      },
+      {
+        "id": "graph-loops",
+        "title": "Conditional edges and bounded correction loops",
+        "source": "Local course notes \u00b7 LangGraph",
+        "text": "In a LangGraph corrective retrieval loop, grade_documents routes to generate_answer when the relevance threshold is met. Otherwise it routes to rewrite_query, followed by retrieve_again and grade_documents. Increment a retry counter when rewriting. Stop correcting once max_retries is reached. An explicit retry bound and a graph recursion limit prevent infinite loops.",
+        "score": 0.5
+      },
+      {
+        "id": "crag-quality",
+        "title": "Document grading and retrieval quality",
+        "source": "Local course notes \u00b7 Grading",
+        "text": "A relevance grader checks whether each document contains information that helps answer the original question. It returns a relevant or irrelevant label and a short reason. Retrieval quality is the number of relevant documents divided by the number retrieved. An empty batch has quality zero. A configurable threshold decides whether to generate an answer or correct retrieval. This ratio is a routing heuristic, not a probability of truth.",
+        "score": 0.25
+      }
+    ],
+    "grades": [
+      {
+        "id": "crag-overview",
+        "relevant": true,
+        "reason": "Demo keyword heuristic: augmented, corrective, generation, retrieval"
+      },
+      {
+        "id": "graph-loops",
+        "relevant": true,
+        "reason": "Demo keyword heuristic: corrective, retrieval"
+      },
+      {
+        "id": "crag-quality",
+        "relevant": false,
+        "reason": "Demo keyword heuristic: retrieval"
+      }
+    ],
+    "relevant_documents": [
+      {
+        "id": "crag-overview",
+        "title": "Corrective retrieval-augmented generation",
+        "source": "Local course notes \u00b7 CRAG",
+        "text": "Corrective retrieval-augmented generation (CRAG) evaluates retrieved evidence before answering a question. A document grader labels each candidate relevant or irrelevant. When evidence quality is poor, the agent rewrites the query and retrieves again or uses web search. Only accepted evidence is supplied to answer generation, reducing the chance of unsupported claims.",
+        "score": 1.0
+      },
+      {
+        "id": "graph-loops",
+        "title": "Conditional edges and bounded correction loops",
+        "source": "Local course notes \u00b7 LangGraph",
+        "text": "In a LangGraph corrective retrieval loop, grade_documents routes to generate_answer when the relevance threshold is met. Otherwise it routes to rewrite_query, followed by retrieve_again and grade_documents. Increment a retry counter when rewriting. Stop correcting once max_retries is reached. An explicit retry bound and a graph recursion limit prevent infinite loops.",
+        "score": 0.5
+      }
+    ],
+    "quality": 0.6666666666666666,
+    "retries": 0,
+    "max_retries": 2,
+    "top_k": 3,
+    "relevance_threshold": 0.5,
+    "use_web": false,
+    "web_attempted": false,
+    "answer": "Offline demo \u2014 excerpts from accepted evidence (no LLM call):\n\nCorrective retrieval-augmented generation (CRAG) evaluates retrieved evidence before answering a question. A document grader labels each candidate relevant or irrelevant. When evidence quality is poor, the agent rewrites the query and retrieves again or uses web search. Only accepted evidence is supplied to answer generation, reducing the chance of unsupported claims. [crag-overview]\n\nIn a LangGraph corrective retrieval loop, grade_documents routes to generate_answer when the relevance threshold is met. Otherwise it routes to rewrite_query, followed by retrieve_again and grade_documents. Increment a retry counter when rewriting. Stop correcting once max_retries is reached. An explicit retry bound and a graph recursion limit prevent infinite loops. [graph-loops]",
+    "outcome": "answered",
+    "trace": [
+      {
+        "node": "retrieve",
+        "attempt": 0,
+        "query": "What is corrective retrieval augmented generation?",
+        "detail": "Initial keyword retrieval found 3 documents.",
+        "documents": [
+          {
+            "id": "crag-overview",
+            "title": "Corrective retrieval-augmented generation",
+            "source": "Local course notes \u00b7 CRAG",
+            "text": "Corrective retrieval-augmented generation (CRAG) evaluates retrieved evidence before answering a question. A document grader labels each candidate relevant or irrelevant. When evidence quality is poor, the agent rewrites the query and retrieves again or uses web search. Only accepted evidence is supplied to answer generation, reducing the chance of unsupported claims.",
+            "score": 1.0
+          },
+          {
+            "id": "graph-loops",
+            "title": "Conditional edges and bounded correction loops",
+            "source": "Local course notes \u00b7 LangGraph",
+            "text": "In a LangGraph corrective retrieval loop, grade_documents routes to generate_answer when the relevance threshold is met. Otherwise it routes to rewrite_query, followed by retrieve_again and grade_documents. Increment a retry counter when rewriting. Stop correcting once max_retries is reached. An explicit retry bound and a graph recursion limit prevent infinite loops.",
+            "score": 0.5
+          },
+          {
+            "id": "crag-quality",
+            "title": "Document grading and retrieval quality",
+            "source": "Local course notes \u00b7 Grading",
+            "text": "A relevance grader checks whether each document contains information that helps answer the original question. It returns a relevant or irrelevant label and a short reason. Retrieval quality is the number of relevant documents divided by the number retrieved. An empty batch has quality zero. A configurable threshold decides whether to generate an answer or correct retrieval. This ratio is a routing heuristic, not a probability of truth.",
+            "score": 0.25
+          }
+        ],
+        "strategy": "keyword overlap"
+      },
+      {
+        "node": "grade_documents",
+        "attempt": 0,
+        "query": "What is corrective retrieval augmented generation?",
+        "detail": "Accepted 2/3; next: generate_answer.",
+        "grades": [
+          {
+            "id": "crag-overview",
+            "relevant": true,
+            "reason": "Demo keyword heuristic: augmented, corrective, generation, retrieval"
+          },
+          {
+            "id": "graph-loops",
+            "relevant": true,
+            "reason": "Demo keyword heuristic: corrective, retrieval"
+          },
+          {
+            "id": "crag-quality",
+            "relevant": false,
+            "reason": "Demo keyword heuristic: retrieval"
+          }
+        ],
+        "quality": 0.6666666666666666,
+        "decision": "generate_answer",
+        "retry_limit_reached": false
+      },
+      {
+        "node": "generate_answer",
+        "attempt": 0,
+        "query": "What is corrective retrieval augmented generation?",
+        "detail": "Finished: answered.",
+        "sources": [
+          "crag-overview",
+          "graph-loops"
+        ],
+        "outcome": "answered"
+      }
+    ],
+    "mode": "demo",
+    "model": "Deterministic demo (no LLM)",
+    "elapsed_seconds": 0.008,
+    "warnings": []
+  },
+  "corrected": {
+    "question": "My bot finds junk",
+    "query": "corrective retrieval document grading irrelevant evidence",
+    "documents": [
+      {
+        "id": "crag-overview",
+        "title": "Corrective retrieval-augmented generation",
+        "source": "Local course notes \u00b7 CRAG",
+        "text": "Corrective retrieval-augmented generation (CRAG) evaluates retrieved evidence before answering a question. A document grader labels each candidate relevant or irrelevant. When evidence quality is poor, the agent rewrites the query and retrieves again or uses web search. Only accepted evidence is supplied to answer generation, reducing the chance of unsupported claims.",
+        "score": 7.701821
+      },
+      {
+        "id": "crag-quality",
+        "title": "Document grading and retrieval quality",
+        "source": "Local course notes \u00b7 Grading",
+        "text": "A relevance grader checks whether each document contains information that helps answer the original question. It returns a relevant or irrelevant label and a short reason. Retrieval quality is the number of relevant documents divided by the number retrieved. An empty batch has quality zero. A configurable threshold decides whether to generate an answer or correct retrieval. This ratio is a routing heuristic, not a probability of truth.",
+        "score": 5.425927
+      },
+      {
+        "id": "grounding",
+        "title": "Grounded answers and citations",
+        "source": "Local course notes \u00b7 Grounding",
+        "text": "A grounded answer uses only relevant retrieved evidence and cites document identifiers such as [crag-overview]. If no relevant evidence is available after correction, the agent should say that evidence is insufficient. Citations help a reader inspect the source, but citation presence alone does not prove that a claim is supported. Retrieved content is untrusted data, not an instruction to the model.",
+        "score": 2.712414
+      }
+    ],
+    "grades": [
+      {
+        "id": "crag-overview",
+        "relevant": true,
+        "reason": "Demo keyword heuristic: corrective, document, evidence, irrelevant, retrieval"
+      },
+      {
+        "id": "crag-quality",
+        "relevant": true,
+        "reason": "Demo keyword heuristic: document, grading, irrelevant, retrieval"
+      },
+      {
+        "id": "grounding",
+        "relevant": true,
+        "reason": "Demo keyword heuristic: document, evidence"
+      }
+    ],
+    "relevant_documents": [
+      {
+        "id": "crag-overview",
+        "title": "Corrective retrieval-augmented generation",
+        "source": "Local course notes \u00b7 CRAG",
+        "text": "Corrective retrieval-augmented generation (CRAG) evaluates retrieved evidence before answering a question. A document grader labels each candidate relevant or irrelevant. When evidence quality is poor, the agent rewrites the query and retrieves again or uses web search. Only accepted evidence is supplied to answer generation, reducing the chance of unsupported claims.",
+        "score": 7.701821
+      },
+      {
+        "id": "crag-quality",
+        "title": "Document grading and retrieval quality",
+        "source": "Local course notes \u00b7 Grading",
+        "text": "A relevance grader checks whether each document contains information that helps answer the original question. It returns a relevant or irrelevant label and a short reason. Retrieval quality is the number of relevant documents divided by the number retrieved. An empty batch has quality zero. A configurable threshold decides whether to generate an answer or correct retrieval. This ratio is a routing heuristic, not a probability of truth.",
+        "score": 5.425927
+      },
+      {
+        "id": "grounding",
+        "title": "Grounded answers and citations",
+        "source": "Local course notes \u00b7 Grounding",
+        "text": "A grounded answer uses only relevant retrieved evidence and cites document identifiers such as [crag-overview]. If no relevant evidence is available after correction, the agent should say that evidence is insufficient. Citations help a reader inspect the source, but citation presence alone does not prove that a claim is supported. Retrieved content is untrusted data, not an instruction to the model.",
+        "score": 2.712414
+      }
+    ],
+    "quality": 1.0,
+    "retries": 1,
+    "max_retries": 2,
+    "top_k": 3,
+    "relevance_threshold": 0.5,
+    "use_web": false,
+    "web_attempted": false,
+    "answer": "Offline demo \u2014 excerpts from accepted evidence (no LLM call):\n\nCorrective retrieval-augmented generation (CRAG) evaluates retrieved evidence before answering a question. A document grader labels each candidate relevant or irrelevant. When evidence quality is poor, the agent rewrites the query and retrieves again or uses web search. Only accepted evidence is supplied to answer generation, reducing the chance of unsupported claims. [crag-overview]\n\nA relevance grader checks whether each document contains information that helps answer the original question. It returns a relevant or irrelevant label and a short reason. Retrieval quality is the number of relevant documents divided by the number retrieved. An empty batch has quality zero. A configurable threshold decides whether to generate an answer or correct retrieval. This ratio is a routing heuristic, not a probability of truth. [crag-quality]\n\nA grounded answer uses only relevant retrieved evidence and cites document identifiers such as [crag-overview]. If no relevant evidence is available after correction, the agent should say that evidence is insufficient. Citations help a reader inspect the source, but citation presence alone does not prove that a claim is supported. Retrieved content is untrusted data, not an instruction to the model. [grounding]",
+    "outcome": "answered",
+    "trace": [
+      {
+        "node": "retrieve",
+        "attempt": 0,
+        "query": "My bot finds junk",
+        "detail": "Initial keyword retrieval found 0 documents.",
+        "documents": [],
+        "strategy": "keyword overlap"
+      },
+      {
+        "node": "grade_documents",
+        "attempt": 0,
+        "query": "My bot finds junk",
+        "detail": "Accepted 0/0; next: rewrite_query.",
+        "grades": [],
+        "quality": 0.0,
+        "decision": "rewrite_query",
+        "retry_limit_reached": false
+      },
+      {
+        "node": "rewrite_query",
+        "attempt": 0,
+        "query": "My bot finds junk",
+        "detail": "Preserved the question; refined the search query.",
+        "rewritten_query": "corrective retrieval document grading irrelevant evidence",
+        "next_attempt": 1
+      },
+      {
+        "node": "retrieve_again",
+        "attempt": 1,
+        "query": "corrective retrieval document grading irrelevant evidence",
+        "detail": "BM25 retrieval found 3 documents.",
+        "documents": [
+          {
+            "id": "crag-overview",
+            "title": "Corrective retrieval-augmented generation",
+            "source": "Local course notes \u00b7 CRAG",
+            "text": "Corrective retrieval-augmented generation (CRAG) evaluates retrieved evidence before answering a question. A document grader labels each candidate relevant or irrelevant. When evidence quality is poor, the agent rewrites the query and retrieves again or uses web search. Only accepted evidence is supplied to answer generation, reducing the chance of unsupported claims.",
+            "score": 7.701821
+          },
+          {
+            "id": "crag-quality",
+            "title": "Document grading and retrieval quality",
+            "source": "Local course notes \u00b7 Grading",
+            "text": "A relevance grader checks whether each document contains information that helps answer the original question. It returns a relevant or irrelevant label and a short reason. Retrieval quality is the number of relevant documents divided by the number retrieved. An empty batch has quality zero. A configurable threshold decides whether to generate an answer or correct retrieval. This ratio is a routing heuristic, not a probability of truth.",
+            "score": 5.425927
+          },
+          {
+            "id": "grounding",
+            "title": "Grounded answers and citations",
+            "source": "Local course notes \u00b7 Grounding",
+            "text": "A grounded answer uses only relevant retrieved evidence and cites document identifiers such as [crag-overview]. If no relevant evidence is available after correction, the agent should say that evidence is insufficient. Citations help a reader inspect the source, but citation presence alone does not prove that a claim is supported. Retrieved content is untrusted data, not an instruction to the model.",
+            "score": 2.712414
+          }
+        ],
+        "strategy": "BM25"
+      },
+      {
+        "node": "grade_documents",
+        "attempt": 1,
+        "query": "corrective retrieval document grading irrelevant evidence",
+        "detail": "Accepted 3/3; next: generate_answer.",
+        "grades": [
+          {
+            "id": "crag-overview",
+            "relevant": true,
+            "reason": "Demo keyword heuristic: corrective, document, evidence, irrelevant, retrieval"
+          },
+          {
+            "id": "crag-quality",
+            "relevant": true,
+            "reason": "Demo keyword heuristic: document, grading, irrelevant, retrieval"
+          },
+          {
+            "id": "grounding",
+            "relevant": true,
+            "reason": "Demo keyword heuristic: document, evidence"
+          }
+        ],
+        "quality": 1.0,
+        "decision": "generate_answer",
+        "retry_limit_reached": false
+      },
+      {
+        "node": "generate_answer",
+        "attempt": 1,
+        "query": "corrective retrieval document grading irrelevant evidence",
+        "detail": "Finished: answered.",
+        "sources": [
+          "crag-overview",
+          "crag-quality",
+          "grounding"
+        ],
+        "outcome": "answered"
+      }
+    ],
+    "mode": "demo",
+    "model": "Deterministic demo (no LLM)",
+    "elapsed_seconds": 0.005,
+    "warnings": []
+  },
+  "unsupported": {
+    "question": "Who won the 2026 intergalactic chess championship?",
+    "query": "who won the 2026 intergalactic chess championship?",
+    "documents": [],
+    "grades": [],
+    "relevant_documents": [],
+    "quality": 0.0,
+    "retries": 2,
+    "max_retries": 2,
+    "top_k": 3,
+    "relevance_threshold": 0.5,
+    "use_web": false,
+    "web_attempted": false,
+    "answer": "I don't have enough relevant evidence to answer this question. The available retrieval attempts did not find supporting documents. Add relevant material to data/knowledge_base.json or enable web search.",
+    "outcome": "insufficient_evidence",
+    "trace": [
+      {
+        "node": "retrieve",
+        "attempt": 0,
+        "query": "Who won the 2026 intergalactic chess championship?",
+        "detail": "Initial keyword retrieval found 0 documents.",
+        "documents": [],
+        "strategy": "keyword overlap"
+      },
+      {
+        "node": "grade_documents",
+        "attempt": 0,
+        "query": "Who won the 2026 intergalactic chess championship?",
+        "detail": "Accepted 0/0; next: rewrite_query.",
+        "grades": [],
+        "quality": 0.0,
+        "decision": "rewrite_query",
+        "retry_limit_reached": false
+      },
+      {
+        "node": "rewrite_query",
+        "attempt": 0,
+        "query": "Who won the 2026 intergalactic chess championship?",
+        "detail": "Preserved the question; refined the search query.",
+        "rewritten_query": "who won the 2026 intergalactic chess championship?",
+        "next_attempt": 1
+      },
+      {
+        "node": "retrieve_again",
+        "attempt": 1,
+        "query": "who won the 2026 intergalactic chess championship?",
+        "detail": "BM25 retrieval found 0 documents.",
+        "documents": [],
+        "strategy": "BM25"
+      },
+      {
+        "node": "grade_documents",
+        "attempt": 1,
+        "query": "who won the 2026 intergalactic chess championship?",
+        "detail": "Accepted 0/0; next: rewrite_query.",
+        "grades": [],
+        "quality": 0.0,
+        "decision": "rewrite_query",
+        "retry_limit_reached": false
+      },
+      {
+        "node": "rewrite_query",
+        "attempt": 1,
+        "query": "who won the 2026 intergalactic chess championship?",
+        "detail": "Preserved the question; refined the search query.",
+        "rewritten_query": "who won the 2026 intergalactic chess championship?",
+        "next_attempt": 2
+      },
+      {
+        "node": "retrieve_again",
+        "attempt": 2,
+        "query": "who won the 2026 intergalactic chess championship?",
+        "detail": "BM25 retrieval found 0 documents.",
+        "documents": [],
+        "strategy": "BM25"
+      },
+      {
+        "node": "grade_documents",
+        "attempt": 2,
+        "query": "who won the 2026 intergalactic chess championship?",
+        "detail": "Accepted 0/0; next: generate_answer.",
+        "grades": [],
+        "quality": 0.0,
+        "decision": "generate_answer",
+        "retry_limit_reached": true
+      },
+      {
+        "node": "generate_answer",
+        "attempt": 2,
+        "query": "who won the 2026 intergalactic chess championship?",
+        "detail": "Finished: insufficient_evidence.",
+        "sources": [],
+        "outcome": "insufficient_evidence"
+      }
+    ],
+    "mode": "demo",
+    "model": "Deterministic demo (no LLM)",
+    "elapsed_seconds": 0.005,
+    "warnings": []
+  }
+}

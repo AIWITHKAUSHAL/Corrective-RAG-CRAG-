@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7f8fa"><title>CRAG Lab · Corrective RAG</title>
+  <link rel="stylesheet" href="/static/styles.css"><script src="/static/app.js" defer></script>
+</head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="/"><span class="brand-mark">c<span>↗</span></span><span>CRAG<span class="light"> / lab</span></span></a>
+  <div class="side-label">WORKSPACE</div>
+  <a class="nav-item selected" href="/">◈ <span>Playground</span><span class="nav-arrow">↗</span></a>
+  <a class="nav-item" href="/architecture" target="_blank" rel="noopener">⌘ <span>Architecture explorer</span></a>
+  <button class="nav-item" id="show-corpus">▤ <span>Knowledge base</span><span class="count" id="doc-count">10</span></button>
+  <a class="nav-item" href="/docs" target="_blank" rel="noopener">⌁ <span>API reference</span></a>
+  <div class="side-card"><div class="side-label">THE CORRECTIVE DIFFERENCE</div><p>Better evidence.<br>Better answers.</p><small>Retrieve, evaluate, and refine.<br>Watch your agent think in steps.</small><div class="mini-flow">▤ <span>→</span> ◇ <span>→</span> ↻ <span>→</span> ✦</div></div>
+  <div class="sidebar-bottom"><span class="status-dot"></span> LangGraph workflow <span class="version">v1.0</span></div>
+</aside>
+<div class="workspace">
+  <header class="topbar"><span>Workspace <span class="slash">/</span> <strong>Playground</strong></span><div class="top-right"><span class="tiny-dot"></span> LOCAL WORKSPACE <span class="avatar">K</span></div></header>
+  <main>
+    <div class="intro"><div><div class="eyebrow">RETRIEVAL, WITH A SECOND THOUGHT</div><h1>Corrective RAG playground<span>.</span></h1><p>Ask a question. Inspect the evidence. Follow every correction.</p></div><a class="outline-button" href="/architecture" target="_blank" rel="noopener">Explore architecture <span>↗</span></a></div>
+    <div class="model-strip"><span class="model-symbol">✦</span><div><strong id="model-name">gemini-3.5-flash-lite</strong><small>EURI · OpenAI-compatible API</small></div><span id="connection" class="pill">Checking configuration</span><span class="strip-note">Six nodes. One transparent workflow.</span></div>
+    <div class="main-grid">
+      <section class="card question-card"><div class="card-heading"><span class="section-number">01</span><h2>Start with a question</h2><span class="subtle">INPUT</span></div>
+        <form id="question-form">
+          <label class="field-label" for="question">Your question</label><textarea id="question" maxlength="2000" required minlength="3" placeholder="What would you like to understand?">What is corrective retrieval augmented generation?</textarea>
+          <div class="examples-label">TRY AN EXAMPLE <span>↙</span></div>
+          <div class="example-list"><button type="button" data-example="What is corrective retrieval augmented generation?"><span class="example-icon green">✓</span><span>Relevant on the first try<small>Understand corrective RAG</small></span><span class="chevron">↗</span></button><button type="button" data-example="My bot finds junk"><span class="example-icon amber">↻</span><span>A query that needs correction<small>See rewriting improve retrieval</small></span><span class="chevron">↗</span></button><button type="button" data-example="Who won the 2026 intergalactic chess championship?"><span class="example-icon blue">?</span><span>Outside the knowledge base<small>See the agent acknowledge its limits</small></span><span class="chevron">↗</span></button></div>
+          <div class="divider"></div><div class="field-label">Execution mode</div><div class="mode-picker"><label><input type="radio" name="mode" value="demo" checked><span>◉ Offline demo</span></label><label><input type="radio" name="mode" value="live"><span>✦ Live EURI</span></label></div><p id="mode-note" class="help">Deterministic grading and source excerpts. No API calls.</p>
+          <details class="settings"><summary>Retrieval settings <span>⌄</span></summary><div class="settings-grid"><label>Top K<select id="top-k"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option></select></label><label>Max corrections<select id="max-retries"><option>0</option><option>1</option><option selected>2</option><option>3</option></select></label><label>Relevance threshold<select id="threshold"><option value="0.34">34%</option><option selected value="0.5">50%</option><option value="0.75">75%</option><option value="1">100%</option></select></label></div><label class="checkbox"><input type="checkbox" id="use-web"> Enable optional Tavily search</label><p class="help">Web search needs live mode, TAVILY_API_KEY, and at least two corrections.</p></details>
+          <button class="run-button" id="run-button" type="submit"><span>Run workflow</span><span>↗</span></button>
+          <div id="error" class="error" role="alert" hidden></div><p class="privacy-note">⌁ Keys stay on your local server.</p>
+        </form>
+      </section>
+      <div class="results-column">
+        <section class="card workflow-card"><div class="card-heading"><span class="section-number">02</span><h2>The correction loop</h2><span id="run-state" class="pill neutral">READY TO RUN</span></div><p class="card-description">Evidence gets evaluated before it becomes an answer.</p>
+          <div class="flow-diagram" aria-label="Retrieve, grade, then answer or rewrite and retrieve again"><div class="flow-top"><div class="flow-node" data-node="retrieve"><span class="node-icon">▤</span><strong>Retrieve</strong><small>Find candidates</small></div><span class="flow-arrow">→</span><div class="flow-node decision" data-node="grade_documents"><span class="node-icon">◇</span><strong>Grade</strong><small>Check relevance</small></div><span class="flow-arrow">→<small>relevant</small></span><div class="flow-node" data-node="generate_answer"><span class="node-icon">✦</span><strong>Generate</strong><small>Cite the evidence</small></div></div><div class="loop-label">↑ <span>regrade</span><span>poor evidence ↓</span></div><div class="flow-bottom"><div class="flow-node compact" data-node="retrieve_again"><span>⌕</span><strong>Retrieve again</strong><small>BM25 / optional web</small></div><span class="flow-arrow">←</span><div class="flow-node compact" data-node="rewrite_query"><span>↻</span><strong>Rewrite query</strong><small>Preserve intent</small></div></div></div>
+          <div class="flow-caption"><span><i class="legend-dot"></i> Normal path</span><span><i class="legend-dot orange"></i> Correction path</span><a href="/architecture" target="_blank" rel="noopener">Inspect nodes ↗</a></div>
+        </section>
+        <section class="card output-card"><div class="card-heading"><span class="section-number">03</span><h2>Answer & evidence</h2><button id="download" class="text-button" disabled>↓ Export trace</button></div>
+          <div id="empty-state" class="empty-state"><div class="empty-icon">✧</div><h3>A good answer starts with good evidence.</h3><p>Run a question to see the answer, document grades,<br>and every step the agent took to get there.</p><span class="empty-tag">GROUNDED · INSPECTABLE · CORRECTIVE</span></div>
+          <div id="result" hidden><div class="result-metrics" id="metrics"></div><div class="tabs" role="tablist" aria-label="Result views"><button role="tab" aria-selected="true" data-tab="answer-panel">Answer</button><button role="tab" aria-selected="false" data-tab="evidence-panel">Evidence</button><button role="tab" aria-selected="false" data-tab="trace-panel">Execution trace</button></div><div id="answer-panel" role="tabpanel"><p id="result-mode" class="help"></p><div id="warnings"></div><div id="answer" class="answer-text"></div><div id="sources" class="sources"></div></div><div id="evidence-panel" role="tabpanel" hidden></div><div id="trace-panel" role="tabpanel" hidden></div></div>
+        </section>
+      </div>
+    </div>
+    <footer><span>Built for understanding, one node at a time.</span><span>LANGGRAPH <b>·</b> EURI <b>·</b> CORRECTIVE RAG</span></footer>
+  </main>
+</div>
+<dialog id="corpus-dialog"><div class="card-heading"><h2>Knowledge base</h2><button id="close-corpus" class="outline-button">Close ×</button></div><p class="help">Edit data/knowledge_base.json to add your own material. Each entry is one retrieval unit.</p><div id="corpus-list"></div></dialog>
+</body></html>
