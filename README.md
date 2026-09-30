@@ -116,7 +116,44 @@ flowchart TD
     A --> END([Cited answer, limited answer, or insufficient evidence])
 ```
 
-The exact diagram exported from the compiled graph is [docs/workflow.mmd](docs/workflow.mmd). The decision diamonds above explain conditional edges; they are not additional Python nodes.
+The decision diamonds above explain conditional edges; they are not additional Python nodes.
+
+### Compiled LangGraph
+
+This is the graph LangGraph compiles from [`crag/graph.py`](crag/graph.py), exported with `build_graph(...).get_graph().draw_mermaid()`. Solid arrows are fixed edges; dotted arrows are conditional edges (`after_grading` from `grade_documents`, `after_rewrite` from `rewrite_query`). `scripts/build_visualizer.py` regenerates this block, [docs/workflow.mmd](docs/workflow.mmd) and the `/architecture` page, so do not edit it by hand.
+
+<!-- langgraph:start -->
+```mermaid
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	retrieve(retrieve)
+	grade_documents(grade_documents)
+	rewrite_query(rewrite_query)
+	retrieve_again(retrieve_again)
+	web_search(web_search)
+	generate_answer(generate_answer)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> retrieve;
+	grade_documents -.-> generate_answer;
+	grade_documents -.-> rewrite_query;
+	retrieve --> grade_documents;
+	retrieve_again --> grade_documents;
+	rewrite_query -.-> retrieve_again;
+	rewrite_query -.-> web_search;
+	web_search --> grade_documents;
+	generate_answer --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc
+```
+<!-- langgraph:end -->
+
+A rendered image is in [docs/workflow.png](docs/workflow.png).
 
 ### Shared state
 
@@ -159,7 +196,7 @@ Relevance ratio is a teaching heuristic, **not** a probability that an answer is
 uv run python -m crag "My bot finds junk" --mode demo --output artifacts/demo.json
 ```
 
-The demo's phrase expansion and keyword grading are deliberately deterministic teaching substitutes, documented in `DemoModel`. Live EURI grading and rewriting may choose different paths. Saved runs are in [docs/demo_runs.json](docs/demo_runs.json); they are **offline executions, not live model outputs**.
+The demo's phrase expansion and keyword grading are deliberately deterministic teaching substitutes, documented in `DemoModel`. Live EURI grading and rewriting may choose different paths. Saved runs are in [docs/demo_runs.json](docs/demo_runs.json). The `direct`, `corrected` and `unsupported` runs are **offline executions, not live model outputs**. The `web` run is a real recording against EURI and Tavily. `build_visualizer.py` re-records it when `EURI_API_KEY` and `TAVILY_API_KEY` are set, and reuses the saved recording otherwise, for example in CI.
 
 ### Optional external search
 

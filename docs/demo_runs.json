@@ -138,7 +138,7 @@
     ],
     "mode": "demo",
     "model": "Deterministic demo (no LLM)",
-    "elapsed_seconds": 0.008,
+    "elapsed_seconds": 0.007,
     "warnings": []
   },
   "corrected": {
@@ -414,7 +414,237 @@
     ],
     "mode": "demo",
     "model": "Deterministic demo (no LLM)",
-    "elapsed_seconds": 0.005,
+    "elapsed_seconds": 0.006,
+    "warnings": []
+  },
+  "web": {
+    "question": "At what temperature does water boil at the summit of Mount Everest?",
+    "query": "boiling point of water Mount Everest summit elevation atmospheric pressure physics thermodynamics",
+    "documents": [
+      {
+        "id": "web-1",
+        "title": "Boiling Point of Water at High Altitude (With Chart) | Water Calculator",
+        "text": "At sea level, water boils at 212 \u00b0F (100 \u00b0C). Climb higher and that number drops steadily \u2014 to about 203 \u00b0F (95 \u00b0C) around 5,000 ft, near 193 \u00b0F (89.6 \u00b0C) at 10,000 ft, and to roughly 161.5 \u00b0F (72 \u00b0C) at the summit of Mount Everest. The cause is air pressure, not temperature itself: water boils the moment its vapor pressure equals the pressure of the air pushing down on it, and there's simply less air overhead the higher you go. Here's the full chart, the physics behind it, and what it actually [...] Water's boiling point is not a fixed 212 \u00b0F \u2014 it's a moving target set by atmospheric pressure, and atmospheric pressure falls steadily with elevation. At a mile above sea level it's already down to around 202 \u00b0F; by the summit of Everest it's barely above 160 \u00b0F. For most home cooking below about 3,000 ft the difference is negligible, but above that, longer cooking times \u2014 or a pressure cooker \u2014 make up for the cooler boil. When you need an exact figure for a specific elevation, the calculator [...] | Altitude | Boiling point (\u00b0F) | Boiling point (\u00b0C) |\n| Sea level (0 ft) | 212.0 \u00b0F | 100.0 \u00b0C |\n| 2,000 ft (610 m) | 208.1 \u00b0F | 97.8 \u00b0C |\n| 5,000 ft (1,524 m) | 202.4 \u00b0F | 94.7 \u00b0C |\n| 7,500 ft (2,286 m) | 197.8 \u00b0F | 92.1 \u00b0C |\n| 10,000 ft (3,048 m) | 193.2 \u00b0F | 89.6 \u00b0C |\n| Everest summit (29,032 ft) | ~161.5 \u00b0F | ~72 \u00b0C |\n\nFigures are for pure water and the standard atmosphere. Local weather, humidity, and dissolved minerals shift the exact number by a fraction of a degree.",
+        "source": "https://watercalculator.us/blog/water-science/boiling-point-of-water-at-altitude",
+        "score": 0.8116913
+      },
+      {
+        "id": "web-2",
+        "title": "Boiling point - Wikipedia",
+        "text": "There are two conventions regarding the standard boiling point of water: The normal boiling point is commonly given as 100 \u00b0C (212 \u00b0F) (actually 99.97 \u00b0C (211.9 \u00b0F) following the thermodynamic definition of the Celsius scale based on the kelvin) at a pressure of 1 atm (101.325 kPa). The IUPAC-recommended standard boiling point of water at a standard pressure of 100 kPa (1 bar) is 99.61 \u00b0C (211.3 \u00b0F). For comparison, on top of Mount Everest, at 8,848 m (29,029 ft \"Foot (unit)\")) elevation, the [...] 8. \u2191 Appendix 1: Property Tables and Charts (SI Units), Scroll down to Table A-5 and read the temperature value of 99.61 \u00b0C at a pressure of 100 kPa (1 bar). Obtained from McGraw-Hill's Higher Education website.\n9. \u2191 West, J. B. (1999). \"Barometric pressures on Mt. Everest: New data and physiological significance\". Journal of Applied Physiology. 86 (3): 1062\u20136. doi \"Doi (identifier)\"):10.1152/jappl.1999.86.3.1062. PMID \"PMID (identifier)\") 10066724. S2CID \"S2CID (identifier)\") 27875962. [...] elevation, the pressure is about 34 kPa \"Pascal (unit)\") (255 Torr) and the boiling point of water is 71 \u00b0C (160 \u00b0F). The Celsius temperature scale was defined until 1954 by two points: 0 \u00b0C being defined by the water freezing point and 100 \u00b0C being defined by the water boiling point at standard atmospheric pressure.",
+        "source": "https://en.wikipedia.org/wiki/Boiling_point",
+        "score": 0.8025714
+      },
+      {
+        "id": "web-3",
+        "title": "Vapour Pressure & Why You can't Boil an Egg on Everest",
+        "text": "North Ridge Pumps 30 August 2019\n\n# Vapour Pressure & Why You can't Boil an Egg on Everest\n\nWater boils at 100\u00b0C, correct? Well sort of. The temperature water boils at can depend on the altitude due to atmospheric pressure. The level of atmospheric pressure is dictated by altitude. Boiling is the process whereby molecules can escape from the surface of a liquid becoming a gas. [...] At sea level water boils at 100\u00b0C due to atmospheric pressure being 1.013 bar. It is possible for water to be heated above 100\u00b0C and not boil by heating water in a sealed container such as a pressure cooker. In fact, in industrial applications, it is possible for water temperatures to reach a few hundred degrees within sealed systems for heat transfer and for the generation of superheated steam. [...] As altitude increases, atmospheric pressure decreases due to the atmosphere becoming thinner. For every 300M in altitude increase the boiling temperature of water decreases by 1\u00b0C. This means at the top of Everest the boiling temperature of the water is 70\u00b0C. The reason you can not boil an egg is that an egg cooks at two different temperatures. The white cooks at 85\u00b0C and the yoke at 65\u00b0C. So on Everest, the whole of an egg will never cook.Kettles on Stove",
+        "source": "https://www.northridgepumps.com/article-2_boil-egg-on-everest",
+        "score": 0.6934942
+      }
+    ],
+    "grades": [
+      {
+        "id": "web-1",
+        "relevant": true,
+        "reason": "Provides the exact boiling point of water at the summit of Mount Everest (~161.5 \u00b0F / ~72 \u00b0C)."
+      },
+      {
+        "id": "web-2",
+        "relevant": true,
+        "reason": "States that on top of Mount Everest the boiling point of water is 71 \u00b0C (160 \u00b0F)."
+      },
+      {
+        "id": "web-3",
+        "relevant": true,
+        "reason": "States that at the top of Everest the boiling temperature of water is 70\u00b0C."
+      }
+    ],
+    "relevant_documents": [
+      {
+        "id": "web-1",
+        "title": "Boiling Point of Water at High Altitude (With Chart) | Water Calculator",
+        "text": "At sea level, water boils at 212 \u00b0F (100 \u00b0C). Climb higher and that number drops steadily \u2014 to about 203 \u00b0F (95 \u00b0C) around 5,000 ft, near 193 \u00b0F (89.6 \u00b0C) at 10,000 ft, and to roughly 161.5 \u00b0F (72 \u00b0C) at the summit of Mount Everest. The cause is air pressure, not temperature itself: water boils the moment its vapor pressure equals the pressure of the air pushing down on it, and there's simply less air overhead the higher you go. Here's the full chart, the physics behind it, and what it actually [...] Water's boiling point is not a fixed 212 \u00b0F \u2014 it's a moving target set by atmospheric pressure, and atmospheric pressure falls steadily with elevation. At a mile above sea level it's already down to around 202 \u00b0F; by the summit of Everest it's barely above 160 \u00b0F. For most home cooking below about 3,000 ft the difference is negligible, but above that, longer cooking times \u2014 or a pressure cooker \u2014 make up for the cooler boil. When you need an exact figure for a specific elevation, the calculator [...] | Altitude | Boiling point (\u00b0F) | Boiling point (\u00b0C) |\n| Sea level (0 ft) | 212.0 \u00b0F | 100.0 \u00b0C |\n| 2,000 ft (610 m) | 208.1 \u00b0F | 97.8 \u00b0C |\n| 5,000 ft (1,524 m) | 202.4 \u00b0F | 94.7 \u00b0C |\n| 7,500 ft (2,286 m) | 197.8 \u00b0F | 92.1 \u00b0C |\n| 10,000 ft (3,048 m) | 193.2 \u00b0F | 89.6 \u00b0C |\n| Everest summit (29,032 ft) | ~161.5 \u00b0F | ~72 \u00b0C |\n\nFigures are for pure water and the standard atmosphere. Local weather, humidity, and dissolved minerals shift the exact number by a fraction of a degree.",
+        "source": "https://watercalculator.us/blog/water-science/boiling-point-of-water-at-altitude",
+        "score": 0.8116913
+      },
+      {
+        "id": "web-2",
+        "title": "Boiling point - Wikipedia",
+        "text": "There are two conventions regarding the standard boiling point of water: The normal boiling point is commonly given as 100 \u00b0C (212 \u00b0F) (actually 99.97 \u00b0C (211.9 \u00b0F) following the thermodynamic definition of the Celsius scale based on the kelvin) at a pressure of 1 atm (101.325 kPa). The IUPAC-recommended standard boiling point of water at a standard pressure of 100 kPa (1 bar) is 99.61 \u00b0C (211.3 \u00b0F). For comparison, on top of Mount Everest, at 8,848 m (29,029 ft \"Foot (unit)\")) elevation, the [...] 8. \u2191 Appendix 1: Property Tables and Charts (SI Units), Scroll down to Table A-5 and read the temperature value of 99.61 \u00b0C at a pressure of 100 kPa (1 bar). Obtained from McGraw-Hill's Higher Education website.\n9. \u2191 West, J. B. (1999). \"Barometric pressures on Mt. Everest: New data and physiological significance\". Journal of Applied Physiology. 86 (3): 1062\u20136. doi \"Doi (identifier)\"):10.1152/jappl.1999.86.3.1062. PMID \"PMID (identifier)\") 10066724. S2CID \"S2CID (identifier)\") 27875962. [...] elevation, the pressure is about 34 kPa \"Pascal (unit)\") (255 Torr) and the boiling point of water is 71 \u00b0C (160 \u00b0F). The Celsius temperature scale was defined until 1954 by two points: 0 \u00b0C being defined by the water freezing point and 100 \u00b0C being defined by the water boiling point at standard atmospheric pressure.",
+        "source": "https://en.wikipedia.org/wiki/Boiling_point",
+        "score": 0.8025714
+      },
+      {
+        "id": "web-3",
+        "title": "Vapour Pressure & Why You can't Boil an Egg on Everest",
+        "text": "North Ridge Pumps 30 August 2019\n\n# Vapour Pressure & Why You can't Boil an Egg on Everest\n\nWater boils at 100\u00b0C, correct? Well sort of. The temperature water boils at can depend on the altitude due to atmospheric pressure. The level of atmospheric pressure is dictated by altitude. Boiling is the process whereby molecules can escape from the surface of a liquid becoming a gas. [...] At sea level water boils at 100\u00b0C due to atmospheric pressure being 1.013 bar. It is possible for water to be heated above 100\u00b0C and not boil by heating water in a sealed container such as a pressure cooker. In fact, in industrial applications, it is possible for water temperatures to reach a few hundred degrees within sealed systems for heat transfer and for the generation of superheated steam. [...] As altitude increases, atmospheric pressure decreases due to the atmosphere becoming thinner. For every 300M in altitude increase the boiling temperature of water decreases by 1\u00b0C. This means at the top of Everest the boiling temperature of the water is 70\u00b0C. The reason you can not boil an egg is that an egg cooks at two different temperatures. The white cooks at 85\u00b0C and the yoke at 65\u00b0C. So on Everest, the whole of an egg will never cook.Kettles on Stove",
+        "source": "https://www.northridgepumps.com/article-2_boil-egg-on-everest",
+        "score": 0.6934942
+      }
+    ],
+    "quality": 1.0,
+    "retries": 2,
+    "max_retries": 2,
+    "top_k": 3,
+    "relevance_threshold": 0.5,
+    "use_web": true,
+    "web_attempted": true,
+    "answer": "At the summit of Mount Everest, water boils at roughly 161.5 \u00b0F (72 \u00b0C) [web-1], about 71 \u00b0C (160 \u00b0F) [web-2], or 70 \u00b0C depending on the source [web-3].",
+    "outcome": "answered",
+    "trace": [
+      {
+        "node": "retrieve",
+        "attempt": 0,
+        "query": "At what temperature does water boil at the summit of Mount Everest?",
+        "detail": "Initial keyword retrieval found 1 documents.",
+        "documents": [
+          {
+            "id": "gardening",
+            "title": "Watering a basil plant",
+            "source": "Sample distractor \u00b7 Gardening",
+            "text": "Basil grows best in a sunny location with well-drained soil. Water when the top layer feels dry. Pinch off flower buds to encourage leafy growth. Overwatering can damage roots.",
+            "score": 0.142857
+          }
+        ],
+        "strategy": "keyword overlap"
+      },
+      {
+        "node": "grade_documents",
+        "attempt": 0,
+        "query": "At what temperature does water boil at the summit of Mount Everest?",
+        "detail": "Accepted 0/1; next: rewrite_query.",
+        "grades": [
+          {
+            "id": "gardening",
+            "relevant": false,
+            "reason": "The document discusses gardening and basil care, not the boiling point of water on Mount Everest."
+          }
+        ],
+        "quality": 0.0,
+        "decision": "rewrite_query",
+        "retry_limit_reached": false
+      },
+      {
+        "node": "rewrite_query",
+        "attempt": 0,
+        "query": "At what temperature does water boil at the summit of Mount Everest?",
+        "detail": "Preserved the question; refined the search query.",
+        "rewritten_query": "boiling point of water Mount Everest summit elevation atmospheric pressure",
+        "next_attempt": 1
+      },
+      {
+        "node": "retrieve_again",
+        "attempt": 1,
+        "query": "boiling point of water Mount Everest summit elevation atmospheric pressure",
+        "detail": "BM25 retrieval found 1 documents.",
+        "documents": [
+          {
+            "id": "gardening",
+            "title": "Watering a basil plant",
+            "source": "Sample distractor \u00b7 Gardening",
+            "text": "Basil grows best in a sunny location with well-drained soil. Water when the top layer feels dry. Pinch off flower buds to encourage leafy growth. Overwatering can damage roots.",
+            "score": 2.431022
+          }
+        ],
+        "strategy": "BM25"
+      },
+      {
+        "node": "grade_documents",
+        "attempt": 1,
+        "query": "boiling point of water Mount Everest summit elevation atmospheric pressure",
+        "detail": "Accepted 0/1; next: rewrite_query.",
+        "grades": [
+          {
+            "id": "gardening",
+            "relevant": false,
+            "reason": "The document is about watering basil plants and contains no information about the boiling point of water on Mount Everest."
+          }
+        ],
+        "quality": 0.0,
+        "decision": "rewrite_query",
+        "retry_limit_reached": false
+      },
+      {
+        "node": "rewrite_query",
+        "attempt": 1,
+        "query": "boiling point of water Mount Everest summit elevation atmospheric pressure",
+        "detail": "Preserved the question; refined the search query.",
+        "rewritten_query": "boiling point of water Mount Everest summit elevation atmospheric pressure physics thermodynamics",
+        "next_attempt": 2
+      },
+      {
+        "node": "web_search",
+        "attempt": 2,
+        "query": "boiling point of water Mount Everest summit elevation atmospheric pressure physics thermodynamics",
+        "detail": "External search returned 3 snippets; grading is required.",
+        "documents": [
+          {
+            "id": "web-1",
+            "title": "Boiling Point of Water at High Altitude (With Chart) | Water Calculator",
+            "text": "At sea level, water boils at 212 \u00b0F (100 \u00b0C). Climb higher and that number drops steadily \u2014 to about 203 \u00b0F (95 \u00b0C) around 5,000 ft, near 193 \u00b0F (89.6 \u00b0C) at 10,000 ft, and to roughly 161.5 \u00b0F (72 \u00b0C) at the summit of Mount Everest. The cause is air pressure, not temperature itself: water boils the moment its vapor pressure equals the pressure of the air pushing down on it, and there's simply less air overhead the higher you go. Here's the full chart, the physics behind it, and what it actually [...] Water's boiling point is not a fixed 212 \u00b0F \u2014 it's a moving target set by atmospheric pressure, and atmospheric pressure falls steadily with elevation. At a mile above sea level it's already down to around 202 \u00b0F; by the summit of Everest it's barely above 160 \u00b0F. For most home cooking below about 3,000 ft the difference is negligible, but above that, longer cooking times \u2014 or a pressure cooker \u2014 make up for the cooler boil. When you need an exact figure for a specific elevation, the calculator [...] | Altitude | Boiling point (\u00b0F) | Boiling point (\u00b0C) |\n| Sea level (0 ft) | 212.0 \u00b0F | 100.0 \u00b0C |\n| 2,000 ft (610 m) | 208.1 \u00b0F | 97.8 \u00b0C |\n| 5,000 ft (1,524 m) | 202.4 \u00b0F | 94.7 \u00b0C |\n| 7,500 ft (2,286 m) | 197.8 \u00b0F | 92.1 \u00b0C |\n| 10,000 ft (3,048 m) | 193.2 \u00b0F | 89.6 \u00b0C |\n| Everest summit (29,032 ft) | ~161.5 \u00b0F | ~72 \u00b0C |\n\nFigures are for pure water and the standard atmosphere. Local weather, humidity, and dissolved minerals shift the exact number by a fraction of a degree.",
+            "source": "https://watercalculator.us/blog/water-science/boiling-point-of-water-at-altitude",
+            "score": 0.8116913
+          },
+          {
+            "id": "web-2",
+            "title": "Boiling point - Wikipedia",
+            "text": "There are two conventions regarding the standard boiling point of water: The normal boiling point is commonly given as 100 \u00b0C (212 \u00b0F) (actually 99.97 \u00b0C (211.9 \u00b0F) following the thermodynamic definition of the Celsius scale based on the kelvin) at a pressure of 1 atm (101.325 kPa). The IUPAC-recommended standard boiling point of water at a standard pressure of 100 kPa (1 bar) is 99.61 \u00b0C (211.3 \u00b0F). For comparison, on top of Mount Everest, at 8,848 m (29,029 ft \"Foot (unit)\")) elevation, the [...] 8. \u2191 Appendix 1: Property Tables and Charts (SI Units), Scroll down to Table A-5 and read the temperature value of 99.61 \u00b0C at a pressure of 100 kPa (1 bar). Obtained from McGraw-Hill's Higher Education website.\n9. \u2191 West, J. B. (1999). \"Barometric pressures on Mt. Everest: New data and physiological significance\". Journal of Applied Physiology. 86 (3): 1062\u20136. doi \"Doi (identifier)\"):10.1152/jappl.1999.86.3.1062. PMID \"PMID (identifier)\") 10066724. S2CID \"S2CID (identifier)\") 27875962. [...] elevation, the pressure is about 34 kPa \"Pascal (unit)\") (255 Torr) and the boiling point of water is 71 \u00b0C (160 \u00b0F). The Celsius temperature scale was defined until 1954 by two points: 0 \u00b0C being defined by the water freezing point and 100 \u00b0C being defined by the water boiling point at standard atmospheric pressure.",
+            "source": "https://en.wikipedia.org/wiki/Boiling_point",
+            "score": 0.8025714
+          },
+          {
+            "id": "web-3",
+            "title": "Vapour Pressure & Why You can't Boil an Egg on Everest",
+            "text": "North Ridge Pumps 30 August 2019\n\n# Vapour Pressure & Why You can't Boil an Egg on Everest\n\nWater boils at 100\u00b0C, correct? Well sort of. The temperature water boils at can depend on the altitude due to atmospheric pressure. The level of atmospheric pressure is dictated by altitude. Boiling is the process whereby molecules can escape from the surface of a liquid becoming a gas. [...] At sea level water boils at 100\u00b0C due to atmospheric pressure being 1.013 bar. It is possible for water to be heated above 100\u00b0C and not boil by heating water in a sealed container such as a pressure cooker. In fact, in industrial applications, it is possible for water temperatures to reach a few hundred degrees within sealed systems for heat transfer and for the generation of superheated steam. [...] As altitude increases, atmospheric pressure decreases due to the atmosphere becoming thinner. For every 300M in altitude increase the boiling temperature of water decreases by 1\u00b0C. This means at the top of Everest the boiling temperature of the water is 70\u00b0C. The reason you can not boil an egg is that an egg cooks at two different temperatures. The white cooks at 85\u00b0C and the yoke at 65\u00b0C. So on Everest, the whole of an egg will never cook.Kettles on Stove",
+            "source": "https://www.northridgepumps.com/article-2_boil-egg-on-everest",
+            "score": 0.6934942
+          }
+        ],
+        "strategy": "Tavily"
+      },
+      {
+        "node": "grade_documents",
+        "attempt": 2,
+        "query": "boiling point of water Mount Everest summit elevation atmospheric pressure physics thermodynamics",
+        "detail": "Accepted 3/3; next: generate_answer.",
+        "grades": [
+          {
+            "id": "web-1",
+            "relevant": true,
+            "reason": "Provides the exact boiling point of water at the summit of Mount Everest (~161.5 \u00b0F / ~72 \u00b0C)."
+          },
+          {
+            "id": "web-2",
+            "relevant": true,
+            "reason": "States that on top of Mount Everest the boiling point of water is 71 \u00b0C (160 \u00b0F)."
+          },
+          {
+            "id": "web-3",
+            "relevant": true,
+            "reason": "States that at the top of Everest the boiling temperature of water is 70\u00b0C."
+          }
+        ],
+        "quality": 1.0,
+        "decision": "generate_answer",
+        "retry_limit_reached": true
+      },
+      {
+        "node": "generate_answer",
+        "attempt": 2,
+        "query": "boiling point of water Mount Everest summit elevation atmospheric pressure physics thermodynamics",
+        "detail": "Finished: answered.",
+        "sources": [
+          "web-1",
+          "web-2",
+          "web-3"
+        ],
+        "outcome": "answered"
+      }
+    ],
+    "mode": "live",
+    "model": "gemini-3.5-flash-lite",
+    "elapsed_seconds": 11.355,
     "warnings": []
   }
 }
